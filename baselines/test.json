@@ -1,0 +1,269 @@
+[
+  {
+    "qid": "a33985b1e8b2502fc18cc8147dc27db8",
+    "question": "For which film did Ben Piazza play the role of Mr. Simms?",
+    "answers": [
+      {
+        "answer": "Mask",
+        "type": "string",
+        "modality": "table",
+        "text_instances": [],
+        "table_indices": [[12, 1]],
+        "image_instances": []
+      }
+    ],
+    "metadata": {
+      "wiki_entities_in_question": [],
+      "wiki_entities_in_answers": [
+        {
+          "text": "Mask",
+          "wiki_title": "Mask (1985 film)",
+          "url": "https://en.wikipedia.org/wiki/Mask_(1985_film)",
+          "table_cells": [[12, 1]]
+        }
+      ],
+      "type": "TableQ",
+      "modalities": ["table"],
+      "pseudo_language_question": "In [Filmography] of [Ben Piazza], what was the [Title](s) when the [Role] was [Mr. Simms]",
+      "rephrasing_meta": {
+        "accuracy": 1.0,
+        "edit_distance": 0.6363636363636364,
+        "confidence": 0.9976132844537853
+      },
+      "image_doc_ids": [
+        "8b5a40ca458a36fb64a1785297b66fd8",
+        "7869011075ff671da6fd10497b262609",
+        "1c0d30d5776bb8ee954667c5277f4bf7",
+        "ddf8b52a8400deaf05940c5cad8169cd",
+        "4b6d3e469ff8395a0f8c1a13c0422937",
+        "ea2173ed76c57ccbe743e87c195f4a37",
+        "c29dbf5e372abe403f66c4845bf924b5",
+        "cadbc8e1fb23d7fe15b88ea1141d2dd2",
+        "9061cf6560fc6305fbd1575097c11aa4",
+        "86cac3116bf69a5e5b2c20866d03e53c",
+        "c67ed9c5f5ba2a12fa95610d523fe28d",
+        "4e9411dae3cbab2b5223b9dabf825684",
+        "103e78f3b29095aef414c5b18532da2c",
+        "ca2bf68495e00f43c248562bec134dbe"
+      ],
+      "text_doc_ids": [
+        "aead4258a97326ae15999e86d3a8aca1",
+        "6319f60b0a581f4aa4c74183fdf2f6fb",
+        "1f0601b3bb39619f144d58d254de662b",
+        "61e3d62a2215eb387f1119568011382d",
+        "47f35474f0826d44962f0ba854a42c70",
+        "7c41a1af6a6bb9ff7f928f753447191e",
+        "e6c1a94600aba3d4b737c24ee8c0ced3",
+        "a4c4d4ebd1540c1ac9969e6f10be9d9e",
+        "4f511883f1eaa14843522087ffbeb1b5",
+        "b9eca313f15e9767b00e7b8e1cfade52"
+      ],
+      "intermediate_answers": [],
+      "table_id": "8513db80c11ea439ab11eba406ec00d9"
+    },
+    "supporting_context": [
+      { "doc_id": "8513db80c11ea439ab11eba406ec00d9", "doc_part": "table" }
+    ]
+  },
+
+  {
+    "qid": "e240f5fe65b39eee70d3576cff88fe5a",
+    "question": "Which film did Ben Piazza appear in first: \"Nightwing\" or the movie that shows half of a woman's face on the poster?",
+    "answers": [
+      {
+        "answer": "Tell Me That You Love Me, Junie Moon",
+        "type": "string",
+        "modality": "table",
+        "text_instances": [],
+        "table_indices": [[3, 1]],
+        "image_instances": []
+      }
+    ],
+    "metadata": {
+      "type": "Compare(Compose(TableQ,ImageQ),TableQ)",
+      "modalities": ["image", "table"],
+      "wiki_entities_in_question": [
+        {
+          "text": "Tell Me That You Love Me, Junie Moon",
+          "wiki_title": "Tell Me That You Love Me, Junie Moon",
+          "url": "https://en.wikipedia.org/wiki/Tell_Me_That_You_Love_Me,_Junie_Moon"
+        },
+        {
+          "text": "Nightwing",
+          "wiki_title": "Nightwing (film)",
+          "url": "https://en.wikipedia.org/wiki/Nightwing_(film)"
+        }
+      ],
+      "wiki_entities_in_answers": [
+        {
+          "text": "Tell Me That You Love Me, Junie Moon",
+          "wiki_title": "Tell Me That You Love Me, Junie Moon",
+          "url": "https://en.wikipedia.org/wiki/Tell_Me_That_You_Love_Me,_Junie_Moon"
+        }
+      ],
+      "pseudo_language_question": "In [Filmography] of [Ben Piazza], which [Title] has earlier [Year] : [Nightwing] or {the [Title(s)] that has the left half of a woman's face on its poster?}?",
+      "rephrasing_meta": {
+        "accuracy": 1.0,
+        "edit_distance": 0.5136186770428015,
+        "confidence": 0.8170992420120224
+      },
+      "image_doc_ids": [
+        "c29dbf5e372abe403f66c4845bf924b5",
+        "4e9411dae3cbab2b5223b9dabf825684",
+        "ddf8b52a8400deaf05940c5cad8169cd",
+        "c67ed9c5f5ba2a12fa95610d523fe28d",
+        "4b6d3e469ff8395a0f8c1a13c0422937",
+        "cadbc8e1fb23d7fe15b88ea1141d2dd2",
+        "1c0d30d5776bb8ee954667c5277f4bf7",
+        "ea2173ed76c57ccbe743e87c195f4a37",
+        "8b5a40ca458a36fb64a1785297b66fd8",
+        "9061cf6560fc6305fbd1575097c11aa4",
+        "7869011075ff671da6fd10497b262609",
+        "86cac3116bf69a5e5b2c20866d03e53c",
+        "103e78f3b29095aef414c5b18532da2c",
+        "ca2bf68495e00f43c248562bec134dbe"
+      ],
+      "text_doc_ids": [
+        "59e045476da3c1bb74f287b78b03bda1",
+        "692acfce5fd1a23c751cc2a5746c46c9",
+        "048d525e35c51a5fe8b6541d6574f2c2",
+        "162b6da3decfef3f22dda7fd879ebef5",
+        "c0bb6503939ccb52678ea2eb3a03b93c",
+        "127a4fc8d34e794fe10615c2f30818df",
+        "57f5784349a774d69bcbda63815e0732",
+        "fd51b8b6a2bad21f05b9671c0a5565e7",
+        "71441d55b94a7d66c090307229bfd4b1",
+        "bfb07219159788b8d1ed7ca9fd4960d8"
+      ],
+      "intermediate_answers": [
+        [
+          {
+            "answer": "Tell Me That You Love Me, Junie Moon",
+            "type": "string",
+            "modality": "image",
+            "text_instances": [],
+            "table_indices": [],
+            "image_instances": [
+              {
+                "doc_id": "ddf8b52a8400deaf05940c5cad8169cd",
+                "doc_part": "image"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "answer": "Nightwing",
+            "type": "string",
+            "modality": "table",
+            "text_instances": [],
+            "table_indices": [[8, 1]],
+            "image_instances": []
+          }
+        ]
+      ],
+      "table_id": "8513db80c11ea439ab11eba406ec00d9"
+    },
+    "supporting_context": [
+      { "doc_id": "8513db80c11ea439ab11eba406ec00d9", "doc_part": "table" },
+      { "doc_id": "ddf8b52a8400deaf05940c5cad8169cd", "doc_part": "image" }
+    ]
+  },
+  {
+    "qid": "05dd4041182c460fbdc8a6075e9800e9",
+    "question": "For the song \"Outro: Circle Room Cypher\" in the V (singer) writing credits, what is the race of the artists?",
+    "answers": [
+      {
+        "answer": "asian",
+        "type": "string",
+        "modality": "image",
+        "text_instances": [],
+        "table_indices": [],
+        "image_instances": [
+          { "doc_id": "2e89fab05db7630d400e245b04d07e9c", "doc_part": "image" }
+        ]
+      }
+    ],
+    "metadata": {
+      "type": "Compose(ImageQ,TableQ)",
+      "modalities": ["table", "image"],
+      "wiki_entities_in_question": [],
+      "wiki_entities_in_answers": [],
+      "pseudo_language_question": "What race are the members of  {the [Artist](s) in the [Writing credits] of [V (singer)] when the [Song] was [\"Outro: Circle Room Cypher\"]},?",
+      "rephrasing_meta": {
+        "accuracy": 1.0,
+        "edit_distance": 0.7829787234042553,
+        "confidence": 0.9968596519141042
+      },
+      "image_doc_ids": [
+        "2e89fab05db7630d400e245b04d07e9c",
+        "3ec5c5f3d0e7af0df1966a38fe4df15a",
+        "5e52cfa10ee0d2271b3d9bbe90da7132",
+        "0c1c8ea33347a83d0da26435e6680a13",
+        "a5ee6828ecaf30d7d1f97f67120e3d51",
+        "61f8256910d916237857fcde1b0d1131"
+      ],
+      "text_doc_ids": [
+        "adfd71d265409ee637f2eac0604b0a3e",
+        "707c8dab0a1a9991f727cca9dea9bb00",
+        "1551213fdb29fd90e6d74bcc0a030cb4",
+        "e82bf39272c1de44c075f1a6d85560a1",
+        "109818ffec9fcea82d35e03d8adf1b45",
+        "59da744797772767ecbe2951337bcf3b",
+        "08a8fa4d8ca324ee2e3a39c401b2faab",
+        "25108009c6849df9c87163e05efa56d8",
+        "b0df1e68a5c5498da342de1671e7dccf",
+        "866f31cf07474e4ebc93fe10cdc2039b"
+      ],
+      "intermediate_answers": [
+        [
+          {
+            "answer": "BTS",
+            "type": "string",
+            "modality": "table",
+            "text_instances": [],
+            "table_indices": [[0, 1]],
+            "image_instances": []
+          }
+        ]
+      ],
+      "table_id": "1eeeeedd19b3c727ac65fd571ee4d648"
+    },
+    "supporting_context": [
+      { "doc_id": "1eeeeedd19b3c727ac65fd571ee4d648", "doc_part": "table" },
+      { "doc_id": "2e89fab05db7630d400e245b04d07e9c", "doc_part": "image" }
+    ]
+  },
+  {
+    "qid": "2d226ad586d552f279c2181f310c7fe9",
+    "question": "how many mercedes slr stirling moss were made",
+    "metadata": {
+      "image_doc_ids": [
+        "463c881f949f9193171e8b29c020b70d",
+        "2c2b0cfc94fd8dafa47f9e4abee7c0ce",
+        "86506c6e4f982b730f0a14a1c7ab9b0b",
+        "a522d09be822d2261a923de9c45191ec",
+        "b4045f6e857b21cfb641ec9571805d29",
+        "c6283e94c87f27d587aa50e455b65aeb",
+        "567886575c0cb04f970e8d321b395932",
+        "fc19b321f13efaeeb932e163c05a3ad0",
+        "b3a09d519c3ff88776bc77c6e66d82e4",
+        "40812e126d681b5424c0d1eb74492f19",
+        "ab47268f19807db99e76a41e38230945"
+      ],
+      "text_doc_ids": [
+        "186fa6467d1b5b97694ef0663b15b42a",
+        "32bb516c6d51d7f05176b818aac7e0dc",
+        "c33fd175d6cd4d9841841801b55cef32",
+        "cf26a3f85f7063824fd2eefbfb0139e3",
+        "4273eafff5a2d30929309abdbf7f5ec2",
+        "b12917c329b73c5b911f251ab23fca0c",
+        "bf5cfffd8ec217d83cc56183b89ef0c1",
+        "833f39f79d19f5fbbfe822e78f64e2c1",
+        "375a3281b15a459c98460d9bb1575f07",
+        "dc1b22173f51f164379c1a7782d80b98"
+      ],
+      "table_id": "e1e5cf1c3dc5e2b0c21d43887a454f2f"
+    }
+  }
+]

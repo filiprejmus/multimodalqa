@@ -5,7 +5,7 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 setup(
@@ -15,4 +15,7 @@ setup(
     description="",
     license="MIT",
     zip_safe=True,
+    packages=find_packages(
+        include=["vilbert", "vilbert.*"]
+    ),  # Include vilbert and any sub-packages
 )
