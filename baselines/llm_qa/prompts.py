@@ -4,9 +4,9 @@ multiple text paragraphs and multiple images. Some of the information is relevan
 while other information is not.
 
 Use JSON mode and answer the question in this format:
-{{
+{
     "answers": ["answer1", "answer2"]
-}}
+}
 
 Naturally there can be either one or more answers.
 Your answers should always represent a single entity. In other words if the question is about a year or a number,

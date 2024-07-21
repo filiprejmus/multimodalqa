@@ -48,7 +48,8 @@ class DataSetManager:
                 os.path.join(self.data_dir, "final_dataset_images", img_path)
             )
             title = self.image_data[imageID]["title"]
-            images.append({"title": title, "image": image})
+            _, file_extension = os.path.splitext(img_path)
+            images.append({"title": title, "image": image, "format": file_extension})
         return images
 
     def createTableContext(self, tableID: str):
