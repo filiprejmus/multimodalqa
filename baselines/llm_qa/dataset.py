@@ -44,11 +44,12 @@ class DataSetManager:
         images = []
         for imageID in imageIDs:
             img_path = self.image_data[imageID]["path"]
+            _, file_extension = os.path.splitext(img_path)
+            file_extension = file_extension.lower()[1:]
             image = load_and_encode_image(
                 os.path.join(self.data_dir, "final_dataset_images", img_path)
             )
             title = self.image_data[imageID]["title"]
-            _, file_extension = os.path.splitext(img_path)
             images.append({"title": title, "image": image, "format": file_extension})
         return images
 
@@ -63,6 +64,8 @@ class DataSetManager:
 def load_and_encode_image(image_path):
     # Load the image
     with Image.open(image_path) as img:
+        if img.mode == "CMYK":
+            img = img.convert("RGB")
         buffered = io.BytesIO()
         img.save(buffered, format="PNG")
         img_bytes = buffered.getvalue()
