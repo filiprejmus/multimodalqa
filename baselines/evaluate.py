@@ -12,6 +12,7 @@ from common_utils import *
 # From here through _match_numbers_if_present was originally copied from the evaluation code of DROP dataset:
 # https://github.com/allenai/allennlp-reading-comprehension/blob/master/allennlp_rc/eval/drop_eval.py
 
+
 def _remove_articles(text: str) -> str:
     regex = re.compile(r"\b(a|an|the)\b", re.UNICODE)
     return re.sub(regex, " ", text)
@@ -43,7 +44,9 @@ def _normalize_answer(text: str) -> str:
     """Lower text and remove punctuation, articles and extra whitespace."""
 
     parts = [
-        _white_space_fix(_remove_articles(_normalize_number(_remove_punc(_lower(token)))))
+        _white_space_fix(
+            _remove_articles(_normalize_number(_remove_punc(_lower(token))))
+        )
         for token in _tokenize(text)
     ]
     parts = [part for part in parts if part.strip()]
@@ -70,7 +73,7 @@ def _is_word_number(text: str) -> bool:
 def _normalize_number(text: str) -> str:
     if _is_number(text):
         return str(float(text))
-    #TODO: this is not included in the original drop evaluation script, we need to have our own in the end anyways.
+    # TODO: this is not included in the original drop evaluation script, we need to have our own in the end anyways.
     elif _is_word_number(text):
         return str(float(word_to_num(text)))
     else:
@@ -143,11 +146,12 @@ def _match_numbers_if_present(gold_bag: Set[str], predicted_bag: Set[str]) -> bo
     return False
 
 
-
 def list_em(predicted, gold):
     predicted_bags = _answer_to_bags(predicted)
     gold_bags = _answer_to_bags(gold)
-    if set(predicted_bags[0]) == set(gold_bags[0]) and len(predicted_bags[0]) == len(gold_bags[0]):
+    if set(predicted_bags[0]) == set(gold_bags[0]) and len(predicted_bags[0]) == len(
+        gold_bags[0]
+    ):
         return 1.0
     else:
         return 0.0
@@ -172,41 +176,52 @@ def metric_max_over_ground_truths(metric_fn, prediction, gold_answers):
 
 def evaluate_predictions(predictions, gold_answers, example_types=None):
     """To support multiple gold annotations, `gold_answers` should be a list,
-    with each item (either a string or a list) corresponding to one valid reference answer."""
+    with each item (either a string or a list) corresponding to one valid reference answer.
+    """
     instance_eval_results = {}
     instance_eval_results_by_types = {}
-    eval_funcs = {
-        "list_em": list_em,
-        "list_f1": list_f1
-    }
+    eval_funcs = {"list_em": list_em, "list_f1": list_f1}
     for qas_id in gold_answers:
         ref_answers = gold_answers[qas_id]
-        if qas_id not in predictions:
-            print(f"Missing prediction for question {qas_id}, and all scores for this question are set to zero")
+        if qas_id not in predictions or len(predictions[qas_id]) == 0:
+            print(
+                f"Missing prediction for question {qas_id}, and all scores for this question are set to zero"
+            )
             instance_eval_results[qas_id] = {
                 metric: 0.0 for metric in eval_funcs.keys()
             }
         else:
             pred_answer = predictions[qas_id]
             instance_eval_results[qas_id] = {
-                metric: metric_max_over_ground_truths(
-                    func, pred_answer, ref_answers
-                ) for metric, func in eval_funcs.items()
+                metric: metric_max_over_ground_truths(func, pred_answer, ref_answers)
+                for metric, func in eval_funcs.items()
             }
         if example_types is not None:
             example_type = example_types[qas_id]
             if example_type not in instance_eval_results_by_types:
                 instance_eval_results_by_types[example_type] = {}
-            instance_eval_results_by_types[example_type][qas_id] = instance_eval_results[qas_id]
+            instance_eval_results_by_types[example_type][qas_id] = (
+                instance_eval_results[qas_id]
+            )
 
-    eval_scores = {metric: np.mean([result[metric] for result in instance_eval_results.values()]) * 100
-                   for metric in eval_funcs.keys()}
+    eval_scores = {
+        metric: np.mean([result[metric] for result in instance_eval_results.values()])
+        * 100
+        for metric in eval_funcs.keys()
+    }
 
     if example_types is not None:
         eval_scores_by_types = {}
-        for example_type, type_instance_eval_results in instance_eval_results_by_types.items():
+        for (
+            example_type,
+            type_instance_eval_results,
+        ) in instance_eval_results_by_types.items():
             eval_scores_by_types[example_type] = {
-                metric: np.mean([result[metric] for result in type_instance_eval_results.values()]) * 100 for metric in eval_funcs.keys()
+                metric: np.mean(
+                    [result[metric] for result in type_instance_eval_results.values()]
+                )
+                * 100
+                for metric in eval_funcs.keys()
             }
         return eval_scores, instance_eval_results, eval_scores_by_types
     else:
@@ -229,16 +244,23 @@ def evaluate_prediction_file(prediction_path, gold_path):
         assert len(answer_modality) == 1
         answer_modalities[qid] = answer_modality.pop()
         question_types[qid] = example["metadata"]["type"]
-        hop_types[qid] = "Multi-hop" if example["metadata"]["type"] in MULTI_HOP_QUESTION_TYPES else "Single-hop"
+        hop_types[qid] = (
+            "Multi-hop"
+            if example["metadata"]["type"] in MULTI_HOP_QUESTION_TYPES
+            else "Single-hop"
+        )
 
-    eval_scores, instance_eval_results = evaluate_predictions(predicted_answers, gold_answers)
+    eval_scores, instance_eval_results = evaluate_predictions(
+        predicted_answers, gold_answers
+    )
     print("\n\nOverall result with different metrics: ")
     for metric, value in eval_scores.items():
         print(f"{metric}: {value}")
 
     modality_counts = Counter(answer_modalities.values())
-    _, _, eval_scores_by_modalities = \
-        evaluate_predictions(predicted_answers, gold_answers, answer_modalities)
+    _, _, eval_scores_by_modalities = evaluate_predictions(
+        predicted_answers, gold_answers, answer_modalities
+    )
     print("\n\nEval results for different modalities:")
     for answer_modality in sorted(eval_scores_by_modalities.keys()):
         result = eval_scores_by_modalities[answer_modality]
@@ -248,18 +270,26 @@ def evaluate_prediction_file(prediction_path, gold_path):
             print(f"{metric}: {value}")
 
     hop_type_counts = Counter(hop_types.values())
-    _, _, eval_scores_by_hop_types = evaluate_predictions(predicted_answers, gold_answers, hop_types)
+    _, _, eval_scores_by_hop_types = evaluate_predictions(
+        predicted_answers, gold_answers, hop_types
+    )
     print("\n\nType\tCount\tEM\tF1")
     for hop_type in sorted(eval_scores_by_hop_types.keys()):
         result = eval_scores_by_hop_types[hop_type]
-        print(f"{hop_type}\t{hop_type_counts[hop_type]}\t{result['list_em']}\t{result['list_f1']}")
+        print(
+            f"{hop_type}\t{hop_type_counts[hop_type]}\t{result['list_em']}\t{result['list_f1']}"
+        )
 
     question_type_counts = Counter(question_types.values())
-    _, _, eval_scores_by_qtypes = evaluate_predictions(predicted_answers, gold_answers, question_types)
+    _, _, eval_scores_by_qtypes = evaluate_predictions(
+        predicted_answers, gold_answers, question_types
+    )
     print("\n\nType\tCount\tEM\tF1")
     for question_type in sorted(eval_scores_by_qtypes.keys()):
         result = eval_scores_by_qtypes[question_type]
-        print(f"{question_type}\t{question_type_counts[question_type]}\t{result['list_em']}\t{result['list_f1']}")
+        print(
+            f"{question_type}\t{question_type_counts[question_type]}\t{result['list_em']}\t{result['list_f1']}"
+        )
     return eval_scores
 
 
