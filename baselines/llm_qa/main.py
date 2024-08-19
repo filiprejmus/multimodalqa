@@ -104,9 +104,9 @@ async def process_batch(batch, inferer, dataset, expected_answers, batch_id):
 
 async def runner(data, inferer, dataset):
     expected_answers = {}
-    batch_size = 6
+    batch_size = 60
     delay = 65
-    for i in range(120, len(data), batch_size):
+    for i in range(2052, len(data), batch_size):
         batch_id = i // batch_size + 1
         batch = data[i : i + batch_size]
         await process_batch(batch, inferer, dataset, expected_answers, batch_id)
