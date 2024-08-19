@@ -24,3 +24,4 @@ yacs
 numpyencoder
 openai
 scikit-learn
+datasets
